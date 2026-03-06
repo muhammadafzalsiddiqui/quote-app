@@ -1,17 +1,25 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { 
-    getFirestore, collection, addDoc, onSnapshot, 
-    query, orderBy, deleteDoc, doc, updateDoc 
+import {  
+    getFirestore,
+    collection, 
+    addDoc, 
+    onSnapshot, 
+    query,
+    orderBy, 
+    deleteDoc, 
+    doc,
+    updateDoc  
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// Firebase Config
+// ✅ Firebase Config (apna actual project details daalo)
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAynJ89FG2n-RpUqfTtKFt9DunfyXiYBKI",
+  authDomain: "quote-app-25d69.firebaseapp.com",
+  projectId: "quote-app-25d69",
+  storageBucket: "quote-app-25d69.firebasestorage.app",
+  messagingSenderId: "477498184023",
+  appId: "1:477498184023:web:38845aef176d910d2cee12",
+  measurementId: "G-4218NBKRNY"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -24,8 +32,8 @@ const quotesList = document.getElementById('quotesList');
 
 // --- 1. Create (Add Quote) ---
 submitBtn.addEventListener('click', async () => {
-    const text = quoteInput.value;
-    const author = authorInput.value;
+    const text = quoteInput.value.trim();
+    const author = authorInput.value.trim();
 
     if (text && author) {
         try {
@@ -36,7 +44,9 @@ submitBtn.addEventListener('click', async () => {
             });
             quoteInput.value = "";
             authorInput.value = "";
-        } catch (e) { alert("Error: " + e.message); }
+        } catch (e) { 
+            alert("Error: " + e.message); 
+        }
     } else {
         alert("Please fill both fields!");
     }
@@ -49,7 +59,7 @@ onSnapshot(q, (snapshot) => {
     quotesList.innerHTML = ""; 
     snapshot.forEach((snapshotDoc) => {
         const data = snapshotDoc.data();
-        const id = snapshotDoc.id; // Document ID for edit/delete
+        const id = snapshotDoc.id;
 
         const quoteCard = document.createElement('div');
         quoteCard.className = 'quote-item';
@@ -72,7 +82,9 @@ window.deleteQuote = async (id) => {
     if (confirm("Are you sure you want to delete this quote?")) {
         try {
             await deleteDoc(doc(db, "quotes", id));
-        } catch (e) { alert("Error deleting: " + e.message); }
+        } catch (e) { 
+            alert("Error deleting: " + e.message); 
+        }
     }
 };
 
@@ -91,6 +103,8 @@ window.editQuote = async (id) => {
                 text: newText,
                 author: newAuthor
             });
-        } catch (e) { alert("Error updating: " + e.message); }
+        } catch (e) { 
+            alert("Error updating: " + e.message); 
+        }
     }
 };

@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick Quotes - Admin & Viewer</title>
+    <title>Quote Cloud - Modern UI</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="container">
-        <div class="admin-box">
-            <h3>Add New Quote</h3>
-            <textarea id="quoteInput" placeholder="Enter your quote here..."></textarea>
-            <input type="text" id="authorInput" placeholder="Enter author name">
-            <button id="submitBtn">Submit to Cloud</button>
+    <div class="app-container">
+        <header>
+            <h1>Quote <span>Cloud</span></h1>
+            <p>Share your thoughts with the world</p>
+        </header>
+
+        <div class="input-card">
+            <textarea id="quoteInput" placeholder="Write your inspiring quote here..."></textarea>
+            <div class="input-row">
+                <input type="text" id="authorInput" placeholder="Author Name">
+                <button id="submitBtn">Post Quote</button>
+            </div>
         </div>
 
-        <hr>
-
-        <div class="quote-box">
-            <h2>"</h2>
-            <p id="quote">Click the button below to fetch a quote!</p>
-            <h3 id="author">- Waiting...</h3>
-            <button id="fetchBtn">Get Random Quote</button>
+        <div class="feed-section">
+            <h3>Recent Quotes</h3>
+            <div id="quotesList" class="quotes-list">
+                </div>
         </div>
     </div>
 
